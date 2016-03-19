@@ -7,7 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C70BEAEF1C7FE83B00EB8258 /* clientLocal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C70BEAED1C7FE83B00EB8258 /* clientLocal.cpp */; };
+		C73B4B751C71187500E87843 /* clientOperations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C73B4B731C71187500E87843 /* clientOperations.cpp */; };
+		C74B44931C77B03B00E1551B /* clientInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C74B44911C77B03B00E1551B /* clientInfo.cpp */; };
+		C74B44961C77E49C00E1551B /* blockInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C74B44941C77E49C00E1551B /* blockInfo.cpp */; };
 		C75EA8C81C68053B004D98B8 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C75EA8C71C68053B004D98B8 /* main.cpp */; };
+		C7BCA72E1C7A1F3800A99971 /* logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C7BCA72C1C7A1F3800A99971 /* logger.cpp */; };
+		C7BCA7321C7A9B6300A99971 /* Statistics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C7BCA7301C7A9B6300A99971 /* Statistics.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +29,21 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C70BEAED1C7FE83B00EB8258 /* clientLocal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = clientLocal.cpp; sourceTree = "<group>"; };
+		C70BEAEE1C7FE83B00EB8258 /* clientLocal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = clientLocal.h; sourceTree = "<group>"; };
+		C73B4B721C7114AC00E87843 /* clientOperations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = clientOperations.h; sourceTree = "<group>"; };
+		C73B4B731C71187500E87843 /* clientOperations.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = clientOperations.cpp; sourceTree = "<group>"; };
+		C74B44911C77B03B00E1551B /* clientInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = clientInfo.cpp; sourceTree = "<group>"; };
+		C74B44921C77B03B00E1551B /* clientInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = clientInfo.h; sourceTree = "<group>"; };
+		C74B44941C77E49C00E1551B /* blockInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = blockInfo.cpp; sourceTree = "<group>"; };
+		C74B44951C77E49C00E1551B /* blockInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = blockInfo.h; sourceTree = "<group>"; };
 		C75EA8C41C68053B004D98B8 /* Server */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Server; sourceTree = BUILT_PRODUCTS_DIR; };
 		C75EA8C71C68053B004D98B8 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		C7BCA72C1C7A1F3800A99971 /* logger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = logger.cpp; sourceTree = "<group>"; };
+		C7BCA72D1C7A1F3800A99971 /* logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = logger.h; sourceTree = "<group>"; };
+		C7BCA72F1C7A206C00A99971 /* global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = global.h; path = ../../../../Desktop/global.h; sourceTree = "<group>"; };
+		C7BCA7301C7A9B6300A99971 /* Statistics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Statistics.cpp; sourceTree = "<group>"; };
+		C7BCA7311C7A9B6300A99971 /* Statistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Statistics.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +76,20 @@
 		C75EA8C61C68053B004D98B8 /* Server */ = {
 			isa = PBXGroup;
 			children = (
+				C7BCA72F1C7A206C00A99971 /* global.h */,
 				C75EA8C71C68053B004D98B8 /* main.cpp */,
+				C73B4B721C7114AC00E87843 /* clientOperations.h */,
+				C7BCA72C1C7A1F3800A99971 /* logger.cpp */,
+				C7BCA72D1C7A1F3800A99971 /* logger.h */,
+				C73B4B731C71187500E87843 /* clientOperations.cpp */,
+				C74B44911C77B03B00E1551B /* clientInfo.cpp */,
+				C74B44921C77B03B00E1551B /* clientInfo.h */,
+				C74B44941C77E49C00E1551B /* blockInfo.cpp */,
+				C74B44951C77E49C00E1551B /* blockInfo.h */,
+				C7BCA7301C7A9B6300A99971 /* Statistics.cpp */,
+				C7BCA7311C7A9B6300A99971 /* Statistics.h */,
+				C70BEAED1C7FE83B00EB8258 /* clientLocal.cpp */,
+				C70BEAEE1C7FE83B00EB8258 /* clientLocal.h */,
 			);
 			path = Server;
 			sourceTree = "<group>";
@@ -118,7 +150,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C73B4B751C71187500E87843 /* clientOperations.cpp in Sources */,
 				C75EA8C81C68053B004D98B8 /* main.cpp in Sources */,
+				C70BEAEF1C7FE83B00EB8258 /* clientLocal.cpp in Sources */,
+				C74B44931C77B03B00E1551B /* clientInfo.cpp in Sources */,
+				C7BCA72E1C7A1F3800A99971 /* logger.cpp in Sources */,
+				C74B44961C77E49C00E1551B /* blockInfo.cpp in Sources */,
+				C7BCA7321C7A9B6300A99971 /* Statistics.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,6 +275,7 @@
 				C75EA8CD1C68053B004D98B8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
