@@ -1199,9 +1199,6 @@ public: int establishClient(char *argv)
                                           insertClientLocal(storeIP, storePort, storeSocket, storeHostname);
                                           k++;
                                       }
-                                
-                                
-                                //printf("inserted locally for client\n");
                             }
                         }
                     }
@@ -1214,7 +1211,6 @@ public: int establishClient(char *argv)
 };
 
 
-
 int main(int argc, char *argv[])
 {
     /*Init. Logger*/
@@ -1224,8 +1220,6 @@ int main(int argc, char *argv[])
    // fclose(fopen(LOGFILE, "w"));
     
     /*Start Here*/
-    
-    
     
     if (argc < 3)
     {
@@ -1240,11 +1234,8 @@ int main(int argc, char *argv[])
     printf("\n YOU CHOOSE TO RUN THE APPLICATION IN (%s) MODE \n\n", operationChoice);
     ServerClientChat obj = *new ServerClientChat(operationChoice);
     
-    
-    
     if(operationChoice[0]=='s')
     {
-        
         printf(" Commands are accepted only in UPPERCASE :\n");
         printf("********************************************************************\n\n");
         printf("AUTHOR\n");     //@
@@ -1254,11 +1245,9 @@ int main(int argc, char *argv[])
         printf("STATISTICS - To see client stats\n");
         printf("BLOCKED - To see a list of blocked clients\n");
         obj.establishServer(portNumber);
-         
     }
     else if(operationChoice[0]=='c')
     {
-        
         printf(" Commands are accepted only in UPPERCASE :\n");
         printf("*********************************************************************\n\n");
         printf("AUTHOR\n");     //@
