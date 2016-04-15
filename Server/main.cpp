@@ -150,7 +150,6 @@ public: int establishServer(char *argv)
         char serverListenPort[30];
         strcpy(serverListenPort,argv);
         
-        
         FD_ZERO(&masterDescriptor);
         FD_ZERO(&tempRead_fds);
         
@@ -197,9 +196,7 @@ public: int establishServer(char *argv)
             fprintf(stderr, "server: port binding failed\n");
            // exit(2);
         }
-        
         freeaddrinfo(serverInfo);
-        
         if(listen(sockfd,5) == -1)                                                 //LISTEN
         {
             perror("listen");
@@ -232,10 +229,6 @@ public: int establishServer(char *argv)
                 {
                     if (FD_ISSET(i, &tempRead_fds))
                     {
-                    // found one connection
-                    //printf("found one connection\n");
-                    //printf("sockfd is: %d\n", sockfd);
-                    //printf("fdMaxNumber is: %d\n", fdMaxNumber);
                         if (i == sockfd)
                         {
                         
@@ -249,9 +242,6 @@ public: int establishServer(char *argv)
                             }
                             else
                             {
-                            //getsockname(newsockfd, (struct sockaddr *) &boundAddress, &clientLength);
-                            
-                            //printf("Socket %d is bound to %s\n", newsockfd, boundAddress);
                             
                             printf("adding to master set\n\n");
                             FD_SET(newsockfd, &masterDescriptor); // add to master set
@@ -276,21 +266,11 @@ public: int establishServer(char *argv)
                                     clientPort = ntohs(peername->sin6_port);
                                     inet_ntop(AF_INET, &peername->sin6_addr, storeAddress, sizeof (storeAddress));
                                 }
-                            
                                 printf("Accepting new connection from %s: %d on socket %d\n\n", storeAddress, clientPort, newsockfd);
                                 printf("Socket %d is bound to %s\n", newsockfd, storeAddress);
-                            
                                 clientLength = sizeof(clientAddress);
-                            
                                 getnameinfo((struct sockaddr *) &clientAddress, clientLength, host, sizeof(host), service, sizeof(service), 0);
-                            
-                                //insertClient(storeAddress, clientPort, newsockfd, host);
-
                                 r++;
-                            
-                                //printf("Current Client List is: \n");
-                                //display();
-                            
                         }
                     }       //else of if FD_ISSET
                     
@@ -341,7 +321,6 @@ public: int establishServer(char *argv)
                                      }
                                  }
                                  
-                                 
                                  if(checkFlag==command.size())                                   //----------------- THE ELSE TO HANDLE CASES
                                  {
                                      //cout<<"Command found in uppercase, moving forward to next logic"<<"\n";
@@ -389,7 +368,6 @@ public: int establishServer(char *argv)
                                          clientPort = ntohs(peername->sin_port);
                                          inet_ntop(AF_INET, &peername->sin_addr, storeLocalAddress, sizeof (storeLocalAddress));
                                          
-                                         
                                          whoAmI(storeLocalAddress);
                                      }
                                      
@@ -403,10 +381,7 @@ public: int establishServer(char *argv)
                                      }
                                      else if (command.compare(compareUserInput5)==0)                //if command is STATISTICS
                                      {
-                                         
                                          displayStats();
-                                         //cse4589_print_and_log("[STATISTICS:SUCCESS]\n");
-                                         //cse4589_print_and_log("[STATISTICS:END]\n");
                                      }
                                      else if (command.compare(compareUserInput6)==0)                //if command is BLOCKED
                                      {
@@ -415,19 +390,14 @@ public: int establishServer(char *argv)
                                      else
                                      {
                                          printf("[%s FAILED]\n",command.c_str());
-                                         //cse4589_print_and_log("[%s:ERROR]\n", command.c_str());
-                                         //cse4589_print_and_log("[%s:END]\n", command.c_str());
                                      }
                                  }
                                  else
                                  {
                                      cout<<"command not in uppercase or invalid"<<"\n";
-                                     //cse4589_print_and_log("[%s:ERROR]\n", command.c_str());
-                                     //cse4589_print_and_log("[%s:END]\n", command.c_str());
                                  }
                                  
-                                 
-                             }//else of STDIN FD_ISSET
+                                 }//else of STDIN FD_ISSET
                     else
                     {
                         // handle data from a client
@@ -505,7 +475,6 @@ public: int establishServer(char *argv)
                                 clientinfo *obj2;
                                 obj=clientStatsSearchByIP(abc);//object of reciever
                                 
-                                
                                 obj2 = clientSearchBySocket(i);//object of sender
                                 
                                 strcpy(msgFromIP, obj2->IPAddress);//IP of sender
@@ -533,30 +502,21 @@ public: int establishServer(char *argv)
                                         if(n<0)
                                         {
                                             perror("ERROR LEVEL: send");
-                                            //cse4589_print_and_log("[RELAYED:ERROR]\n");
-                                            //cse4589_print_and_log("[RELAYED:END]\n");
                                         }
                                         else
                                         {
                                             updateMessagesRecvCounter(abc);
                                             printf("msg from:%s, to:%s\n[msg]:%s\n", msgFromIP, tokenContainer[1], tokenContainer[2]);
-                                            //cse4589_print_and_log("[RELAYED:SUCCESS]\n");
-                                            //cse4589_print_and_log("msg from:%s, to:%s\n[msg]:%s\n", msgFromIP, tokenContainer[1], tokenContainer[2]);
-                                            //cse4589_print_and_log("[RELAYED:END]\n");
                                         }
                                     }
                                     else if (strcmp(obj->clientStatus,"offline")==0)
                                     {
                                         printf("Requested client not online\n");
-                                        //cse4589_print_and_log("[RELAYED:ERROR]\n");
-                                        //cse4589_print_and_log("[RELAYED:END]\n");
                                     }
                                 }
                                 else
                                 {
                                     printf("Message could not be relayed as client is blocked\n");
-                                    //cse4589_print_and_log("[RELAYED:ERROR]\n");
-                                    //cse4589_print_and_log("[RELAYED:END]\n");
                                 }
                             
                             }
@@ -624,7 +584,6 @@ public: int establishServer(char *argv)
                             }
                             else if(strcmp(command, "BROADCAST")==0)
                             {
-                                
                                 clientinfo *obj14;
                                 char broadcaster[30];
                                 int flagbcast = 0;
@@ -687,9 +646,6 @@ public: int establishServer(char *argv)
                                 if(flagbcast==1)
                                 {
                                     printf("msg from:%s, to:%s\n[msg]:%s\n", broadcaster, "255.255.255.255", tokenContainer[1]);
-                                    //cse4589_print_and_log("[RELAYED:SUCCESS]\n");
-                                    //cse4589_print_and_log("msg from:%s, to:%s\n[msg]:%s\n", broadcaster, "255.255.255.255", tokenContainer[1]);
-                                    //cse4589_print_and_log("[RELAYED:END]\n");
                                 }
                                 else
                                 {
@@ -753,9 +709,6 @@ public: int establishServer(char *argv)
         } // END looping through file descriptors
     } // END for(;;)--and you thought it would never end!
     
-    
-    
-    
     //---------------------------------------------------------------TCP CLIENT-------------------------------------------------------------------//
     
 public: int establishClient(char *argv)
@@ -770,10 +723,6 @@ public: int establishClient(char *argv)
         fd_set tempRead_fdsC;
         int fdMaxNumberC;
         int logoutFlag=0;
-
-        
-        
-        
         
                 FD_ZERO(&tempRead_fdsC);
                 FD_ZERO(&masterDescriptor);
@@ -796,8 +745,6 @@ public: int establishClient(char *argv)
                     if(FD_ISSET(STDIN, &tempRead_fdsC))
                     {
                         
-                        
-                        
                         getline(std::cin, str1);                                       //next step after login
                         char *token;
                         char *ptr;
@@ -813,18 +760,8 @@ public: int establishClient(char *argv)
                             argCounter++;
                             token=strtok(NULL, " ");
                         }
-//                        strcpy(temp, tokenContainer[2]);
-//
-//                        for(int i=3;i<=argCounter;i++)
-//                        {
-//                            strcat(temp, " ");
-//                            strcat(temp,tokenContainer[i]);
-//                            
-//                        }
-                        
+
                         string command = tokenContainer[0];
-//                        char *IP = tokenContainer[1];
-//                        char *message =  temp;
                         string compareUserInput1 = "AUTHOR";
                         string compareUserInput2 = "IP";
                         string compareUserInput3 = "PORT";
@@ -869,8 +806,6 @@ public: int establishClient(char *argv)
                                 else
                                 {
                                     printf("[%s:ERROR]\n", command.c_str());
-                                    //cse4589_print_and_log("[%s:ERROR]\n", command.c_str());
-                                    //cse4589_print_and_log("[%s:END]\n", command.c_str());
                                 }
                             }
                             
@@ -883,8 +818,6 @@ public: int establishClient(char *argv)
                                 else
                                 {
                                      printf("[%s:ERROR]\n", command.c_str());
-                                    //cse4589_print_and_log("[%s:ERROR]\n", command.c_str());
-                                    //cse4589_print_and_log("[%s:END]\n", command.c_str());
                                 }
                             }
                             
@@ -902,15 +835,11 @@ public: int establishClient(char *argv)
                                 if(h==0)
                                 {
                                     printf("IP NOT IN CORRECT FORMAT\n");
-                                    //cse4589_print_and_log("[%s:ERROR]\n", command.c_str());
-                                    //cse4589_print_and_log("[%s:END]\n", command.c_str());
                                 }
                                 
                                 if(!(atoi(portNumber)>1024 && atoi(portNumber)<65535))
                                 {
                                     printf("PORT IS NOT IN CORRECT FORMAT\n");
-                                    //cse4589_print_and_log("[%s:ERROR]\n", command.c_str());
-                                    //cse4589_print_and_log("[%s:END]\n", command.c_str());
                                 }
                                 
                                 memset(&hints, 0, sizeof(hints));
@@ -960,22 +889,13 @@ public: int establishClient(char *argv)
                                     inet_ntop(AF_INET, &peername->sin6_addr, storeAddress, sizeof (storeAddress));
                                 }
                                 
-                                
                                 clientLength = sizeof((struct sockaddr_in6 *) &clientAddress);
-                                
                                 getnameinfo((struct sockaddr *) &clientAddress, clientLength, host, sizeof(host), service, sizeof(service), 0);
-                                
                                 char portMessage[30];
                                 strcpy(portMessage, "LOGIN-");
                                 strcat(portMessage, clientListenPort);
-                                
                                 send(sockfd, portMessage, sizeof(portMessage), 0);
-                                
-                                
                                 printf("Connecting to %-5s%-20s on port %-5d\n\n", storeAddress, host, clientPort);
-                                //cse4589_print_and_log("[%s:SUCCESS]\n", command.c_str());
-                                //cse4589_print_and_log("[%s:END]\n", command.c_str());
-                                
                                 privilegeFlag=1;                                        //set flag for command privilege level
                                 FD_SET(sockfd, &masterDescriptor);
                                 fdMaxNumberC = (sockfd>STDIN?sockfd:STDIN);
@@ -1096,22 +1016,15 @@ public: int establishClient(char *argv)
                                     if(obj1==NULL)
                                     {
                                         printf("Valid but Inconsistent IP. Try REFRESHing your list\n");
-                                        //cse4589_print_and_log("[%s:ERROR]\n", command.c_str());
-                                        //cse4589_print_and_log("[%s:END]\n", command.c_str());
-                                        
                                     }
                                     else
                                     {
                                         send(sockfd, temp, sizeof(temp), 0);
-                                        //cse4589_print_and_log("[%s:SUCCESS]\n", command.c_str());
-                                        //cse4589_print_and_log("[%s:END]\n", command.c_str());
                                     }
                                 }
                                 else
                                 {
                                    printf("[%s:ERROR]\n", command.c_str());
-                                    //cse4589_print_and_log("[%s:ERROR]\n", command.c_str());
-                                    //cse4589_print_and_log("[%s:END]\n", command.c_str());
                                 }
                             }
                             else if(command.compare(compareUserInput9)==0)                  //if command is UNBLOCK
@@ -1127,15 +1040,11 @@ public: int establishClient(char *argv)
                                     strcat(temp, IP);
                                     printf("sending %s to server\n",temp);
                                     send(sockfd, temp, sizeof(temp), 0);
-                                    //cse4589_print_and_log("[%s:SUCCESS]\n", command.c_str());
-                                    //cse4589_print_and_log("[%s:END]\n", command.c_str());
                                     
                                 }
                                 else
                                 {
                                     printf("[%s:ERROR]\n", command.c_str());
-                                    //cse4589_print_and_log("[%s:ERROR]\n", command.c_str());
-                                    //cse4589_print_and_log("[%s:END]\n", command.c_str());
                                 }
                             }
                             else if(command.compare(compareUserInput10)==0)                 //if command is LOGOUT
@@ -1155,15 +1064,11 @@ public: int establishClient(char *argv)
                                         printf("You have chosen to logout\n");
                                         privilegeFlag=0;
                                         logoutFlag = 1;
-                                        //cse4589_print_and_log("[%s:SUCCESS]\n", command.c_str());
-                                        //cse4589_print_and_log("[%s:END]\n", command.c_str());
                                     }
                                 }
                                 else
                                 {
                                     printf("[%s:ERROR]\n", command.c_str());
-                                    //cse4589_print_and_log("[%s:ERROR]\n", command.c_str());
-                                    //cse4589_print_and_log("[%s:END]\n", command.c_str());
                                 }
 
                                 
@@ -1190,8 +1095,6 @@ public: int establishClient(char *argv)
                                         //cse4589_print_and_log("[%s:END]\n", command.c_str());
                                     }
                                         printf("You have chosen to EXIT. Thank you for using the application\n");
-                                    //cse4589_print_and_log("[%s:SUCCESS]\n", command.c_str());
-                                    //cse4589_print_and_log("[%s:END]\n", command.c_str());
                                 }
                                     exit(0);
                                 
@@ -1203,16 +1106,12 @@ public: int establishClient(char *argv)
                             else
                             {
                                 printf("[%s:ERROR]\n", command.c_str());
-                                //cse4589_print_and_log("[%s:ERROR]\n", command.c_str());
-                                //cse4589_print_and_log("[%s:END]\n", command.c_str());
                                 
                             }
                         }
                         else
                         {
                                 printf("[%s:ERROR]\n", command.c_str());
-                            //cse4589_print_and_log("[%s:ERROR]\n", command.c_str());
-                            //cse4589_print_and_log("[%s:END]\n", command.c_str());
                         }
                     }
                     
