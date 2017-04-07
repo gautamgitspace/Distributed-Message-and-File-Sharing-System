@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+#
+# Parser script to parse all command line inputs in the App
+#
 import re
 
 def parseAUTHOR(output):
