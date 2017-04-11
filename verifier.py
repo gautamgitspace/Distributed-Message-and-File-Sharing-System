@@ -62,3 +62,19 @@ if __name__ == "__main__":
     else:
       print "FAIL"
       exit()
+
+
+    #AUTHOR
+    print
+    print '\033[33m'+"AUTHOR ..."+'\033[0m',
+    sys.stdout.flush()
+    s_or_c = 's'
+    port = 4242
+    expect_command = "expect -f author.exp "+args.path[0]+" "+s_or_c+" "+str(port)
+    process = subprocess.Popen(expect_command, shell=True, stdout=open(os.devnull, 'w'), stderr=subprocess.STDOUT)
+    time.sleep(2)
+
+    print
+    print "I got the following output:"
+    output = extractOutputSuccess("AUTHOR", logfile_path+"_"+str(port))
+    parseOutput(output, lambda: parseAUTHOR(output))
