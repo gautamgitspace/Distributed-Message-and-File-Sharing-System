@@ -109,3 +109,30 @@ if __name__ == "__main__":
     print "I got the following output:"
     output = extractOutputSuccess("PORT", logfile_path+"_"+str(port))
     parseOutput(output, lambda: parsePORT(output))
+
+    #LIST OF CLIENTS
+    print
+    print '\033[33m'+"LIST ..."+'\033[0m',
+    sys.stdout.flush()
+    s_or_c = 's'
+    port = 4242
+    expect_command = "expect -f list_server.exp "+args.path[0]+" "+s_or_c+" "+str(port)
+    server = subprocess.Popen(expect_command, shell=True, stdout=open(os.devnull, 'w'), stderr=subprocess.STDOUT)
+
+    s_or_c = 'c'
+    port = 1111
+    expect_command = "expect -f list_client.exp "+args.path[0]+" "+s_or_c+" "+str(port)
+    client_1 = subprocess.Popen(expect_command, shell=True, stdout=open(os.devnull, 'w'), stderr=subprocess.STDOUT)
+    time.sleep(1)
+    port = 1212
+    expect_command = "expect -f list_client.exp "+args.path[0]+" "+s_or_c+" "+str(port)
+    client_2 = subprocess.Popen(expect_command, shell=True, stdout=open(os.devnull, 'w'), stderr=subprocess.STDOUT)
+    time.sleep(1)
+    port = 1313
+    expect_command = "expect -f list_client.exp "+args.path[0]+" "+s_or_c+" "+str(port)
+    client_3 = subprocess.Popen(expect_command, shell=True, stdout=open(os.devnull, 'w'), stderr=subprocess.STDOUT)
+    time.sleep(1)
+    port = 1414
+    expect_command = "expect -f list_client.exp "+args.path[0]+" "+s_or_c+" "+str(port)
+    client_4 = subprocess.Popen(expect_command, shell=True, stdout=open(os.devnull, 'w'), stderr=subprocess.STDOUT)
+    time.sleep(12)
