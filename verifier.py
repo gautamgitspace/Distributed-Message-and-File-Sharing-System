@@ -136,3 +136,8 @@ if __name__ == "__main__":
     expect_command = "expect -f list_client.exp "+args.path[0]+" "+s_or_c+" "+str(port)
     client_4 = subprocess.Popen(expect_command, shell=True, stdout=open(os.devnull, 'w'), stderr=subprocess.STDOUT)
     time.sleep(12)
+
+    os.system('kill -9 '+str(client_1.pid))
+    os.system('kill -9 '+str(client_2.pid))
+    os.system('kill -9 '+str(client_3.pid))
+    os.system('kill -9 '+str(client_4.pid))
