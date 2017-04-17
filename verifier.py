@@ -141,3 +141,25 @@ if __name__ == "__main__":
     os.system('kill -9 '+str(client_2.pid))
     os.system('kill -9 '+str(client_3.pid))
     os.system('kill -9 '+str(client_4.pid))
+
+    print
+    print "Output Received:"
+    print "-On Server-"
+    output = extractOutputSuccess("LIST", logfile_path+"_4242")
+    parseOutput(output, lambda: parseLIST(output, 'server'))
+
+    print "-On Client 1-"
+    output = extractOutputSuccess("LIST", logfile_path+"_1111")
+    parseOutput(output, lambda: parseLIST(output, 'client1'))
+
+    print "-On Client 2-"
+    output = extractOutputSuccess("LIST", logfile_path+"_1212")
+    parseOutput(output, lambda: parseLIST(output, 'client2'))
+
+    print "-On Client 3-"
+    output = extractOutputSuccess("LIST", logfile_path+"_1313")
+    parseOutput(output, lambda: parseLIST(output, 'client3'))
+
+    print "-On Client 4-"
+    output = extractOutputSuccess("LIST", logfile_path+"_1414")
+    parseOutput(output, lambda: parseLIST(output, 'client4'))
