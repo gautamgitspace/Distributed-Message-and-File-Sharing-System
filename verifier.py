@@ -163,3 +163,17 @@ if __name__ == "__main__":
     print "-On Client 4-"
     output = extractOutputSuccess("LIST", logfile_path+"_1414")
     parseOutput(output, lambda: parseLIST(output, 'client4'))
+
+    #SEND
+    print
+    print '\033[33m'+"SEND ..."+'\033[0m',
+    sys.stdout.flush()
+    s_or_c = 's'
+    port = 4242
+    expect_command = "expect -f send_server.exp "+args.path[0]+" "+s_or_c+" "+str(port)
+    server = subprocess.Popen(expect_command, shell=True, stdout=open(os.devnull, 'w'), stderr=subprocess.STDOUT)
+    s_or_c = 'c'
+    port = 1111
+    expect_command = "expect -f send_client.exp "+args.path[0]+" "+s_or_c+" "+str(port)
+    client = subprocess.Popen(expect_command, shell=True, stdout=open(os.devnull, 'w'), stderr=subprocess.STDOUT)
+    time.sleep(8)
