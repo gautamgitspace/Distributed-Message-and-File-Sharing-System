@@ -177,3 +177,16 @@ if __name__ == "__main__":
     expect_command = "expect -f send_client.exp "+args.path[0]+" "+s_or_c+" "+str(port)
     client = subprocess.Popen(expect_command, shell=True, stdout=open(os.devnull, 'w'), stderr=subprocess.STDOUT)
     time.sleep(8)
+
+    os.system('kill -9 '+str(client.pid))
+
+    print
+    print "I got the following output:"
+    print "-On Server-"
+    output = extractOutputSuccess("RELAYED", logfile_path+"_4242")
+    parseOutput(output, lambda: parseRELAYED(output))
+    print
+    print "-On Client-"
+    output = extractOutputSuccess("RECEIVED", logfile_path+"_1111")
+    parseOutput(output, lambda: parseRECEIVED(output))
+    print
