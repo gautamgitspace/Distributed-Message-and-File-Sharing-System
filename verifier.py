@@ -190,3 +190,20 @@ if __name__ == "__main__":
     output = extractOutputSuccess("RECEIVED", logfile_path+"_1111")
     parseOutput(output, lambda: parseRECEIVED(output))
     print
+
+    #BROADCAST
+    print
+    print '\033[33m'+"BROADCAST ..."+'\033[0m',
+    sys.stdout.flush()
+    s_or_c = 's'
+    port = 4242
+    expect_command = "expect -f broadcast_server.exp "+args.path[0]+" "+s_or_c+" "+str(port)
+    server = subprocess.Popen(expect_command, shell=True, stdout=open(os.devnull, 'w'), stderr=subprocess.STDOUT)
+    s_or_c = 'c'
+    port = 1111
+    expect_command = "expect -f broadcast_client_1.exp "+args.path[0]+" "+s_or_c+" "+str(port)
+    client_1 = subprocess.Popen(expect_command, shell=True, stdout=open(os.devnull, 'w'), stderr=subprocess.STDOUT)
+    port = 1212
+    expect_command = "expect -f broadcast_client_2.exp "+args.path[0]+" "+s_or_c+" "+str(port)
+    client_2 = subprocess.Popen(expect_command, shell=True, stdout=open(os.devnull, 'w'), stderr=subprocess.STDOUT)
+    time.sleep(10)
