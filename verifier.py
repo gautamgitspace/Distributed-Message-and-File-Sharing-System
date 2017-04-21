@@ -207,3 +207,6 @@ if __name__ == "__main__":
     expect_command = "expect -f broadcast_client_2.exp "+args.path[0]+" "+s_or_c+" "+str(port)
     client_2 = subprocess.Popen(expect_command, shell=True, stdout=open(os.devnull, 'w'), stderr=subprocess.STDOUT)
     time.sleep(10)
+
+    os.system('kill -9 '+str(client_1.pid))
+    os.system('kill -9 '+str(client_2.pid))
