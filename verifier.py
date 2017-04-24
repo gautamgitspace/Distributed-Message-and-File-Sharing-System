@@ -210,3 +210,18 @@ if __name__ == "__main__":
 
     os.system('kill -9 '+str(client_1.pid))
     os.system('kill -9 '+str(client_2.pid))
+
+    print
+    print "I got the following output:"
+    print "-On Server-"
+    output = extractOutputSuccess("RELAYED", logfile_path+"_4242")
+    parseOutput(output, lambda: parseRELAYED(output))
+    print
+    print "-On Client 1-"
+    output = extractOutputSuccess("RECEIVED", logfile_path+"_1111")
+    parseOutput(output, lambda: parseRECEIVED(output))
+    print
+    print "-On Client 2-"
+    output = extractOutputSuccess("RECEIVED", logfile_path+"_1212")
+    parseOutput(output, lambda: parseRECEIVED(output))
+    print
