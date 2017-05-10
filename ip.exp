@@ -1,0 +1,15 @@
+#!/usr/bin/expect
+
+set binary [lindex $argv 0];
+set s_or_c [lindex $argv 1];
+set port [lindex $argv 2]
+
+set timeout 1
+
+spawn $binary $s_or_c $port
+
+expect "*" { send "IP\n" }
+sleep 2
+expect "*" { send \003 }
+
+interact
